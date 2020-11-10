@@ -19,13 +19,19 @@ class Assignment implements Comparator<Assignment>{
 	
 	/**
 	 * This method is used to sort to compare assignment objects for sorting. 
+	 * 
+	 * @return the difference between the deadlines if they are not equal, difference between the weights if they are
+	 * 
+	 * Sooner deadline should be done first, or higher weight if deadlines equal.
 	 */
 	@Override
 	public int compare(Assignment a1, Assignment a2) {
-		// TODO Implement this
+		if (a1.deadline != a2.deadline) 
+		{
+			return a1.deadline - a2.deadline;
+		}
 		
-		
-		return 0;
+		return a2.weight - a1.weight; 
 	}
 }
 
