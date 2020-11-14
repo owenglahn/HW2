@@ -9,7 +9,7 @@ public class Kruskal{
     	DisjointSets gDisJoint = new DisjointSets(g.getNbNodes());
         for ( Edge e : g.listOfEdgesSorted())
         {
-        	if (IsSafe(gDisJoint, e))
+        	if (IsSafe(gDisJoint, e)) // if edge is safe for Kruskal, add to graph to return
         	{
         		toReturn.addEdge(e);
         		gDisJoint.union(e.nodes[0], e.nodes[1]);

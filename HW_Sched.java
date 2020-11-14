@@ -25,19 +25,25 @@ class Assignment implements Comparator<Assignment> {
 	 */
 	@Override
 	public int compare(Assignment a1, Assignment a2) {
-		if (a1.deadline == a2.deadline) 
+		if (a1.deadline == a2.deadline) // same deadline -> compare weights
 		{
-			if (a2.weight > a1.weight) return 1;
-			else if (a2.weight < a1.weight) return -1;
+			// higher weight should be done first
+			if (a2.weight > a1.weight)
+				return 1;
+			else if (a2.weight < a1.weight)
+				return -1;
 			return 0;
 		}
-		else if(a1.deadline > a2.deadline) return 1;
+		// sooner deadline goes first
+		else if (a1.deadline > a2.deadline)
+			return 1;
 		return -1;
-		
+
 	}
-	
-	public String toString()
-	{
+
+	/* Overriden helper method for testing */
+	@Override
+	public String toString() {
 		return "(" + number + ": " + weight + ", " + deadline + ")";
 	}
 }
@@ -59,6 +65,7 @@ public class HW_Sched {
 	}
 
 	/**
+	 * Runs in O(n)
 	 * 
 	 * @return Array where output[i] corresponds to the assignment that will be done
 	 *         at time i.
@@ -76,16 +83,14 @@ public class HW_Sched {
 			homeworkPlan[i] = -1;
 		}
 		int i = 1;
-		for ( Assignment asgn : Assignments )
-		{
-			if (i > lastDeadline) break;
-			if ( asgn.deadline >= i )
-			{
-				homeworkPlan[i-1] = asgn.number;
-				i++;
+		for (Assignment asgn : Assignments) {
+			if (i > lastDeadline) break; // array is full, break
+			if (asgn.deadline >= i) {
+				homeworkPlan[i - 1] = asgn.number; // add asgn to array slot
+				i++; // go to next slot
 			}
 		}
-			
+
 		return homeworkPlan;
 	}
 }
