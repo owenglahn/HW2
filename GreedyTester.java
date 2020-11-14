@@ -15,6 +15,10 @@ public class GreedyTester {
 		//This call organizes the assignments and outputs homeworkPlan
 		int[] res = schedule.SelectAssignments();
 		System.out.println(Arrays.toString(res));
+		for (Assignment asgn : schedule.Assignments)
+		{
+			System.out.println(asgn.toString());
+		}
 	}
 		
 }
