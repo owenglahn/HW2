@@ -82,7 +82,7 @@ public class DisjointSets {
     	{
     		par[iRep] = jRep;
     		unionRep = jRep;
-    		if (rank[iRep] == rank[jRep]) rank[jRep] ++; // if equal rank, increment rank of new root
+    		if (rank[iRep] == rank[jRep] && iRep != jRep) rank[jRep] ++; // if equal rank, increment rank of new root
     	}
         return unionRep;
         
