@@ -5,8 +5,8 @@ public class GreedyTester {
 		
 		//This is the typical kind of input you will be tested with. The format will always be the same
 		//Each index represents a single homework. For example, homework zero has weight 23 and deadline t=3.
-		int[] weights = new int[] {23, 60, 14, 25, 7}; 
-		int[] deadlines = new int[] {3, 1, 2, 1, 3};
+		int[] weights = new int[] {23, 60, 14, 25, 7, 22, 21}; 
+		int[] deadlines = new int[] {3, 1, 2, 1, 3, 3, 2};
 		int m = weights.length;
 		
 		//This is the declaration of a schedule of the appropriate size

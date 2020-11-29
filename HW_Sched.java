@@ -84,7 +84,11 @@ public class HW_Sched {
 		}
 		int i = 1;
 		for (Assignment asgn : Assignments) {
-			if (i > lastDeadline) break; // array is full, break
+			if (i > lastDeadline) // array has been filled
+			{
+				int[] min = min(homeworkPlan);
+				if ( asgn.weight > min[1]) homeworkPlan[min[0]] = asgn.number;
+			}
 			if (asgn.deadline >= i) {
 				homeworkPlan[i - 1] = asgn.number; // add asgn to array slot
 				i++; // go to next slot
@@ -92,5 +96,42 @@ public class HW_Sched {
 		}
 
 		return homeworkPlan;
+	}
+	
+	/*
+	 * @return array with first item as the index of the minimum weight element and second item as the mininum weight
+	 */
+	public int[] min(int[] plan)
+	{
+		int minWeight;
+		int minIndex = 0;
+		if (plan.length > 0) minWeight = getWeightByNumber(plan[0]);
+		else 
+		{
+			return new int[2];
+		}
+		int [] toReturn = new int[2];
+		for ( int i = 0; i < plan.length; i++)
+		{
+			if (getWeightByNumber(plan[i]) < minWeight) 
+			{
+				minWeight = getWeightByNumber(plan[i]);
+				minIndex = i;
+			}
+		}
+		toReturn[0] = minIndex;
+		toReturn[1] = minWeight;
+		return toReturn;
+	}
+	
+	/*
+	 * @return weight of assignment n
+	 */
+	public int getWeightByNumber(int n)
+	{
+		for ( Assignment asgn : Assignments )
+		{
+			if (asgn.number == n) return asgn.weight;
+		}return -1;
 	}
 }
